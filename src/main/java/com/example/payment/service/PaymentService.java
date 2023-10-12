@@ -34,18 +34,10 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public void workOnMessage(Order orderDetails) {
-        if (orderDetails != null) {
-            Payment payment = getPaymentByOrderId(orderDetails.getId());
-            if (payment != null) {
-                payment.setStatus(orderDetails.getStatus());
-                createOrUpdate(payment);
-            } else {
-                orderDetails.setStatus(PaymentStatus.FAILED);
-                messageSender.send(UtilityMapper.getJsonString(orderDetails));
-            }
-        } else {
-            orderDetails.setStatus(PaymentStatus.FAILED);
-            messageSender.send(UtilityMapper.getJsonString(orderDetails));
-        }
+        Payment payment = new Payment();
+        payment.setOrderId(orderDetails.getId());
+        payment.setStatus(PaymentStatus.INITIATED);
+        createOrUpdate(payment);
+        messageSender.sendNotification(UtilityMapper.getJsonString(orderDetails));
     }
 }

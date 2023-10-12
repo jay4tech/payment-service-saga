@@ -8,13 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfig {
 
-
-    @Value("${queue.name.order}")
-    private String queueOrder;
+    @Value("${queue.name.notification}")
+    private String queueNotification;
 
     @Bean
-    public Queue queueOrder() {
-        return new Queue(queueOrder, true);
+    public Queue queueNotification() {
+        return new Queue(queueNotification, true);
     }
 
     @Value("${queue.name.payment}")

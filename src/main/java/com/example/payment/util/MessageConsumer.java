@@ -15,8 +15,6 @@ public class MessageConsumer {
     @Autowired
     IPaymentService paymentService;
 
-
-
     @RabbitListener(queues = {"${queue.name.payment}"})
     public void receive(@Payload String message) {
         System.out.println("Message " + message);
