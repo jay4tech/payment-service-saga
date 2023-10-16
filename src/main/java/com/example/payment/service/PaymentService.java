@@ -40,4 +40,13 @@ public class PaymentService implements IPaymentService {
         createOrUpdate(payment);
         messageSender.sendNotification(UtilityMapper.getJsonString(orderDetails));
     }
+
+    @Override
+    public Payment receivePayment(Payment payment) {
+        Payment paymentDb = paymentRepository.save(payment);
+        if(paymentDb.getStatus().equals(PaymentStatus.SUCCESS)){
+            messageSender.sendOrder(UtilityMapper.getJsonString(paymentDb));
+        }
+        return paymentDb;
+    }
 }

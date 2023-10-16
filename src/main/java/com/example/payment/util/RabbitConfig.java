@@ -23,4 +23,13 @@ public class RabbitConfig {
     public Queue queuePayment() {
         return new Queue(queuePayment, true);
     }
+
+
+    @Value("${queue.name.order}")
+    private String queueOrder;
+
+    @Bean
+    public Queue queueOrder() {
+        return new Queue(queueOrder, true);
+    }
 }

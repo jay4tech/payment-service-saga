@@ -22,8 +22,13 @@ public class PaymentController {
         return orderService.getPayment(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public Payment getPayment(@RequestBody Payment payment) {
         return orderService.createOrUpdate(payment);
+    }
+
+    @PostMapping
+    public Payment receivePayment(@RequestBody Payment payment) {
+        return orderService.receivePayment(payment);
     }
 }

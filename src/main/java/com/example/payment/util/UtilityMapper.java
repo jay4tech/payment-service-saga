@@ -1,6 +1,7 @@
 package com.example.payment.util;
 
 
+import com.example.payment.entity.Payment;
 import com.example.payment.model.Order;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -27,12 +28,11 @@ public class UtilityMapper {
         mapper.registerModule(new JavaTimeModule());
         return mapper;
     }
-    public static String getJsonString(Order json) {
+    public static String getJsonString(Object object) {
         try {
-            return getMapper().writeValueAsString(json);
+            return getMapper().writeValueAsString(object);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
-
 }

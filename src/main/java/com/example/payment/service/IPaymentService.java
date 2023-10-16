@@ -9,4 +9,6 @@ public interface IPaymentService {
     Payment getPayment(Long id);
 
     void workOnMessage(Order orderDetails);
+
+    Payment receivePayment(Payment payment);
 }
